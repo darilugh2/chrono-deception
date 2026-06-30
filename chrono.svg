@@ -12,186 +12,142 @@
         .card {
           width: 800px;
           height: 250px;
-          overflow: hidden;
           position: relative;
-          background: #090b10;
-          border: 4px solid #00f0ff;
+          background: linear-gradient(135deg, #0d0214 0%, #1a0a2e 50%, #0d0214 100%);
+          overflow: hidden;
+          display: flex;
+          align-items: center;
         }
 
-        .card::before {
-          content: "";
+        .grid-lines {
           position: absolute;
-          inset: -50%;
-          background:
-            conic-gradient(
-              #00f0ff,
-              #7b61ff,
-              #ff3cac,
-              #00f0ff
-            );
-          animation: rotate 6s linear infinite;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255,60,172,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,60,172,0.06) 1px, transparent 1px);
+          background-size: 30px 30px;
         }
 
-        .inner {
+        .glow-orb {
           position: absolute;
-          inset: 4px;
-          background:
-            radial-gradient(circle at center,
-            rgba(123,97,255,0.15),
-            #090b10 70%);
+          width: 350px;
+          height: 350px;
+          right: -100px;
+          top: -80px;
+          background: radial-gradient(circle, rgba(255,60,172,0.35), transparent 70%);
+          filter: blur(20px);
+          animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .accent-bar {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 6px;
+          background: linear-gradient(180deg, #ff3cac, #7b61ff, #00f0ff);
+        }
+
+        .content {
+          position: relative;
+          z-index: 2;
+          padding: 0 50px;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          color: white;
-          overflow: hidden;
+          align-items: flex-start;
         }
 
-        .clock {
-          position: absolute;
-          width: 500px;
-          height: 500px;
-          border: 1px solid rgba(0,240,255,.08);
-          border-radius: 50%;
-          animation: spin 30s linear infinite;
-        }
-
-        .clock::before,
-        .clock::after {
-          content: "";
-          position: absolute;
-          inset: 50%;
-          background: rgba(0,240,255,.15);
-          transform-origin: top;
-        }
-
-        .clock::before {
-          width: 2px;
-          height: 180px;
-        }
-
-        .clock::after {
-          width: 180px;
-          height: 2px;
-          margin-top: -1px;
+        .tag {
+          color: #ff3cac;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+          padding: 4px 12px;
+          border: 1px solid rgba(255,60,172,0.5);
+          border-radius: 20px;
+          margin-bottom: 14px;
         }
 
         .title {
-          position: relative;
-          font-size: 42px;
-          font-weight: 900;
-          letter-spacing: 4px;
+          font-size: 44px;
+          font-weight: 800;
+          letter-spacing: 1px;
           color: #ffffff;
-          text-transform: uppercase;
-          animation: glitch 4s infinite;
-          z-index: 2;
+          line-height: 1.1;
         }
 
-        .subtitle {
-          color: #00f0ff;
-          margin-top: 8px;
-          font-size: 14px;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          z-index: 2;
+        .title span {
+          background: linear-gradient(90deg, #ff3cac, #7b61ff);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
         }
 
         .desc {
-          margin-top: 12px;
-          color: #c7d0e0;
+          margin-top: 10px;
+          color: #b8b0c8;
           font-size: 14px;
-          text-align: center;
-          max-width: 600px;
-          z-index: 2;
+          max-width: 480px;
+        }
+
+        .row {
+          margin-top: 22px;
+          display: flex;
+          align-items: center;
+          gap: 24px;
         }
 
         .button {
-          margin-top: 20px;
-          padding: 12px 30px;
-          border: 2px solid #00f0ff;
-          color: #00f0ff;
+          padding: 12px 28px;
+          background: linear-gradient(90deg, #ff3cac, #7b61ff);
+          color: #ffffff;
           text-decoration: none;
           font-weight: bold;
+          font-size: 13px;
           letter-spacing: 2px;
-          transition: all .3s ease;
-          z-index: 2;
+          border-radius: 6px;
+          box-shadow: 0 4px 18px rgba(255,60,172,0.4);
+          transition: transform .25s ease, box-shadow .25s ease;
         }
 
         .button:hover {
-          background: #00f0ff;
-          color: #090b10;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 22px rgba(255,60,172,0.6);
         }
 
         .team {
-          position: absolute;
-          bottom: 15px;
-          right: 20px;
-          color: #888;
-          font-size: 12px;
+          color: #6b6480;
+          font-size: 11px;
           letter-spacing: 2px;
-        }
-
-        @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(-360deg); }
-        }
-
-        @keyframes glitch {
-          0%,100% {
-            text-shadow:
-              2px 0 #00f0ff,
-              -2px 0 #ff3cac;
-          }
-          25% {
-            text-shadow:
-              -2px 0 #00f0ff,
-              2px 0 #ff3cac;
-          }
-          50% {
-            text-shadow:
-              4px 0 #00f0ff,
-              -4px 0 #ff3cac;
-          }
-          75% {
-            text-shadow:
-              -4px 0 #00f0ff,
-              4px 0 #ff3cac;
-          }
         }
       </style>
 
       <div class="card">
-        <div class="inner">
+        <div class="grid-lines"></div>
+        <div class="glow-orb"></div>
+        <div class="accent-bar"></div>
 
-          <div class="clock"></div>
+        <div class="content">
+          <div class="tag">Mystery</div>
 
-          <div class="title">
-            CHRONO DECEPTION
-          </div>
-
-          <div class="subtitle">
-            TIME IS LYING TO YOU
-          </div>
+          <div class="title">CHRONO <span>DECEPTION</span></div>
 
           <div class="desc">
-            Uncover hidden truths, manipulate time,
-            and escape a reality built on deception.
+            Uncover hidden truths, manipulate time, and escape a reality built on deception.
           </div>
 
-          <a class="button"
-             href="https://myztyn.itch.io/chrono-deception" target="_blank">
-             ▶ PLAY ON ITCH.IO
-          </a>
-
-          <div class="team">
-            A.K.A OWLS STUDIO
+          <div class="row">
+            <a class="button" href="https://myztyn.itch.io/chrono-deception" target="_blank">
+              ▶ PLAY ON ITCH.IO
+            </a>
+            <div class="team">A.K.A OWLS STUDIO</div>
           </div>
-
         </div>
       </div>
     </div>
